@@ -75,8 +75,10 @@ for item_id in item_ids:
     if not replace:
         print 'Fetching item ' + str(item_id)
         item_json = get_item(auth_creds, product_id, item_id)
-        print item_json
-        tags = ",".join(item_json['tags'])
+        if 'tags' in item_json:
+            tags = ",".join(item_json['tags'])
+        else:
+            tags = ""
         for tag in new_tags:
             tags += ',' + tag
     else:
