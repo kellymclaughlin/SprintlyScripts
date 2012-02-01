@@ -31,7 +31,6 @@ import base64
 
 def get_item(AuthCreds, ProductId, ItemId):
     SprintlyUrl = 'https://sprint.ly/api/products/' + ProductId + '/items/' + str(ItemId) + '.json'
-    print SprintlyUrl
     req = urllib2.Request(SprintlyUrl, None, {'Authorization': 'Basic ' + AuthCreds})
     opener = urllib2.build_opener()
     f = opener.open(req)
@@ -42,9 +41,7 @@ def update_item_tags(AuthCreds, ProductId, ItemId, Tags):
     conn = httplib.HTTPSConnection('sprint.ly')
     conn.request("POST", Url, 'tags=' + Tags, {'Authorization': 'Basic ' + AuthCreds})
     response = conn.getresponse()
-    print response.status, response.reason
     data = response.read()
-    print data
     conn.close()
     return True
 
